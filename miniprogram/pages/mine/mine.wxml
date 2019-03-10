@@ -1,0 +1,28 @@
+<view>
+	<veiw class="login">
+		<button
+			open-type="getUserInfo" 
+			class="userinfo-avatar"
+			style="background-image: url({{avatarUrl}})"
+	    ></button>
+	    <block class="info" wx:if="{{!logged}}">
+	    	<text>未登录</text>
+	    	<text>您还未登录，请点击登录</text>
+	    </block>
+	    <block class="info" wx:else>
+	    	<text>{{userInfo.nickName}}</text>
+	    	<text>请点击右侧按钮完善您的个人信息吧</text>
+	    </block>
+	    
+	    <button bindtap="checkLogin">检查登录态</button>
+	    <button bindtap="goLogin">登录</button>
+	</veiw>
+
+	<view class="order">
+		 
+	</view>
+
+	<view class="share">
+		
+	</view>
+</view>

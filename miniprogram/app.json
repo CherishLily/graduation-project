@@ -1,0 +1,32 @@
+{
+  "pages": [
+    "pages/home/home",
+    "pages/publish/publish",
+    "pages/mine/mine"
+  ],
+  "window": {
+    "backgroundColor": "#F6F6F6",
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#0fb7e0",
+    "navigationBarTitleText": "成理服务平台",
+    "navigationBarTextStyle": "white"
+  },
+  "tabBar": {
+    "list": [{
+      "pagePath": "pages/home/home",
+      "text": "逛逛",
+      "iconPath": "./images/icons/shopping_g.png",
+      "selectedIconPath": "./images/icons/shopping_b.png"
+    },{
+      "pagePath": "pages/publish/publish",
+      "text": "发布",
+      "iconPath": "./images/icons/publish_g.png",
+      "selectedIconPath": "./images/icons/publish_b.png"
+    },{
+      "pagePath": "pages/mine/mine",
+      "text": "我的",
+      "iconPath": "./images/icons/mine_g.png",
+      "selectedIconPath": "./images/icons/mine_b.png"
+    }]
+  }
+}

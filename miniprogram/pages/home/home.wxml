@@ -1,0 +1,56 @@
+<view>
+    <view class="search">
+        <view class="ipt-box">
+            <text class="iconfont icon-icon_search"></text>
+            <input class="search-ipt" maxlength="20" type="text" placeholder="请输入查询内容" />
+        </view>
+        <button class="search-btn">搜索</button>
+    </view>
+    <swiper
+    class="home-swiper"
+    autoplay="true"
+    interval="3000"
+    duration="500"
+    >
+    <block wx:for="{{imgUrls}}" wx:key="*this">
+        <swiper-item>
+            <image src="{{item}}" class="slide-image"/>
+        </swiper-item>
+    </block>
+    </swiper>
+    <view class="main">
+        <!-- 近期热门 -->
+        <view class="hot">
+            <view class="h-tag">
+                <view class="v-line"></view>
+                <text class="tit">近期热门</text>
+            </view>
+            
+        </view>
+
+        <!-- 信息列表 -->
+        <view class="main-msg">
+            <!-- 导航条 -->
+            <view class="tab">
+                <view bindtap="changeChoice" data-tag="1" class='{{chooseNew ? "tab-item item-border" : "tab-item"}}'>
+                    <text class='{{chooseNew ? "tit-b" : "tit"}}'>最新信息</text>
+                </view>
+                <view bindtap="changeChoice" data-tag="0" class='{{chooseNew ? "tab-item" : "tab-item item-border"}}'>
+                    <text class='{{chooseNew ? "tit" : "tit-b"}}'>免费专区</text>
+                </view>
+            </view>
+
+            <!-- 列表 -->
+            <view class="msg-list">
+                <view class="msg-item">
+                    <view>
+                        <image src="" class="portrait"/>
+                    </view>
+                    
+                </view>
+            </view>
+
+
+        </view>
+    </view>
+</view>

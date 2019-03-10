@@ -1,0 +1,78 @@
+.main-msg, .hot{
+	background-color: white;
+	margin-top: 20rpx;
+}
+.slide-image{
+  width: 750rpx;
+}
+.search{
+	margin: 10rpx;
+	height: 60rpx;
+	display: flex;
+	flex-direction: row;
+}
+.search-btn{
+	font-size: 24rpx;
+	color: white;
+	background-color: #0fb7e0;
+	border: none;
+}
+.ipt-box{
+	width: 80%;
+	background-color: white;
+	border-radius: 10rpx;
+	padding-left: 20rpx;
+	height: 100%;
+}
+.search-ipt{
+	height: 100%;
+	font-size: 24rpx;
+	display: inline-block;
+	width:90%;
+	margin-left:20rpx;
+}
+.icon-icon_search{
+	position: relative;
+	bottom: 20rpx;
+}
+.v-line{
+	display: inline-block;
+	height: 40rpx;
+	width: 6rpx;
+	margin-right: 20rpx;
+	background-color: #249ed9;
+}
+.hot{
+	height: 240rpx;
+	padding: 20rpx;
+}
+.h-tag{
+	border-bottom: 1rpx solid gray;
+	height: 60rpx;
+	display: flex;
+	flex-direction: row;
+}
+.tit{
+	font-size: 32rpx;
+	color: gray;
+}
+.tit-b{
+	font-size: 32rpx;
+	color: #249ed9;
+}
+.tab{
+	display: flex;
+	height: 80rpx;
+	flex-direction: row;
+	align-items: center;
+	border-bottom: 1rpx solid gray;
+}
+.tab-item{
+	width: 50%;
+	height: 100%;
+	text-align: center;
+	line-height: 80rpx;
+}
+.item-border{
+	border-bottom: 1px solid #249ed9;
+}
