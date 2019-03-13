@@ -1,12 +1,53 @@
-.userinfo-avatar {
-  width: 200rpx;
-  height: 200rpx;
-  margin: 20rpx;
-  border-radius: 50%;
-  background-size: cover;
-  background-color: white;
+.login{
+	background-color: white;
+	width: 100%;
+	display: flex;
+	margin-top: 20rpx;
 }
-
+.info{
+	width: 60%;
+	display:flex;
+	flex-direction:column;
+	justify-content:center;
+}
+.detail{
+	color: gray;
+	font-size: 24rpx;
+}
 .userinfo-avatar:after {
-  border: none;
+	border: none;
+}
+.arrow{
+	display:flex;
+	flex-direction:column;
+	justify-content:center;
+
+}
+.arrow text{
+	font-size: 60rpx;
+	color: #0fb7e0;
+}
+.share, .order{
+	background-color: white;
+	width: 100%;
+	margin-top: 20rpx;
+}
+.share view, .order view{
+	padding: 20rpx;
+	border-bottom: 1rpx solid #eee;
+}
+.share .icon-jiantouarrow487, .order .icon-jiantouarrow487{
+	font-size: 40rpx;
+	color: #0fb7e0;
+	float: right;
+}
+.order-icon{
+	font-size: 48rpx;
+	margin-right: 20rpx;
+	/*color: gray;*/
+}
+.share-icon{
+	font-size: 40rpx;
+	margin-right: 20rpx;
+	/*color: gray;*/
 }

@@ -1,0 +1,44 @@
+<view>
+	<view class="common-bg avatar-box">
+		<image src="{{avatarUrl}}" class="userinfo-avatar" />
+		<view>
+			<text class="txt">修改头像</text>
+			<text class="iconfont icon-jiantouarrow487"></text>
+		</view>
+	</view>
+
+	<view class="user-info common-bg">
+		<view>
+			<text>昵称:</text>
+			<input type="text" />
+		</view>
+		<view>
+			<text>性别:</text>
+			<input type="text" />
+		</view>
+		<view>
+			<text>个性签名:</text>
+			<input type="text" />
+		</view>
+		<view>
+			<text>宿舍区:</text>
+			<input type="text" />
+		</view>
+	</view>
+
+	<view class="tip">
+		<text>下面的信息不被公开显示</text>
+	</view>
+	<view class="user-info common-bg">
+		<view>
+			<text>联系电话:</text>
+			<input type="text" />
+		</view>
+		<view>
+			<text>微信号:</text>
+			<input type="text" />
+		</view>
+	</view>
+
+	<button type="primary" class="save">保存</button>
+</view>

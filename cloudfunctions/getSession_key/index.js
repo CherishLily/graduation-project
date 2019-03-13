@@ -9,7 +9,7 @@ const db = cloud.database()
 // 云函数入口函数
 exports.main = async (event, context) => {
 	const wxContext = cloud.getWXContext();
-	const { code } = event;
+	const { code, nickName, gender, avatarUrl } = event;
 	const secret = 'd5fe38fcc7c6dfd640d9bba2276723d6';
 	const url = `https://api.weixin.qq.com/sns/jscode2session?appid=${wxContext.APPID}&secret=${secret}&js_code=${code}&grant_type=authorization_code`;
 	//发请求获取session_key和openid
@@ -34,12 +34,21 @@ exports.main = async (event, context) => {
 	const { session_key, openid } = res;
 	const skey = encryptSha1(session_key); // 加密session_key获得skey
 	
-
+	const detailInfo = {
+			nickName,
+			gender,
+			avatarUrl,
+			autograph: '',
+			dormitoryArea: '',
+			weChat:'',
+			phoneNumber: ''
+		};
 	//存入数据库
 	const params = {
 		openid,
 		session_key,
-		skey
+		skey,
+		detailInfo,
 	};
 
 	try {

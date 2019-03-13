@@ -5,7 +5,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    avatarUrl: './user-unlogin.png',
+    avatarUrl: 'cloud://dev-513b66.6465-dev-513b66/avatarUrl/user-unlogin.png',
     logged: false,
     userInfo: {}
   },
@@ -13,35 +13,46 @@ Page({
 
   goLogin(){
     const that = this;
-    //登录
-    wx.login({
-      success(res) {
-        if (res.code) {
+    // const userInfo = {};
+    wx.getUserInfo({
+      success: data => {
+        console.log('userInfo:',data.userInfo);
+        const { nickName, gender, avatarUrl } = data.userInfo;
+        //登录
+        wx.login({
+          success(res) {
+            if (res.code) {
               // 调用云函数
-          wx.cloud.callFunction({
-            name: 'getSession_key',
-            data: {
-              code: res.code
-            },
-            success: result => {
-              console.log('登录成功,skey:',result);
-              //获取用户信息
-              that.getUserInfo();
-              //将skey存入storage
-              try {
-                wx.setStorageSync('skey',result.result.skey);
-              } catch (e) {
-                  console.log(e);
-              }
-            },
-            fail: err => {
-              console.log(err);
+              wx.cloud.callFunction({
+                name: 'getSession_key',
+                data: {
+                  code: res.code,
+                  nickName,
+                  gender,
+                  avatarUrl,
+                },
+                success: result => {
+                  console.log('登录成功,skey:',result);
+                  //获取用户信息
+                  that.getUserInfo();
+                  //将skey存入storage
+                  try {
+                    wx.setStorageSync('skey',result.result.skey);
+                  } catch (e) {
+                      console.log(e);
+                  }
+                },
+                fail: err => {
+                  console.log(err);
+                }
+              })
             }
-          })
-        }
-        else{
-          console.log('登录失败！' + res.errMsg)
-        }
+            else{
+              console.log('登录失败！' + res.errMsg)
+            }
+          }
+        })
+            
       }
     })
 
@@ -75,6 +86,18 @@ Page({
           logged: true
         })
       }
+    })
+  },
+
+  toUserInfo(){
+    wx.navigateTo({
+      url: '../userInfo/userInfo'
+    })
+  },
+
+  toGoodsList(){
+    wx.navigateTo({
+      url: '../goodsList/goodsList'
     })
   },
   /**

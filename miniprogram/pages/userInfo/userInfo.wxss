@@ -1,0 +1,44 @@
+.common-bg{
+	background-color: white;
+	margin-bottom: 20rpx;
+}
+.tip{
+	margin-bottom: 20rpx;
+	color: gray;
+	font-size:28rpx;
+	margin-left: 20rpx;
+}
+.avatar-box{
+	height:240rpx;
+	position:relative;
+}
+.avatar-box view{
+	position:absolute;
+	display:inline-block;
+	right:20rpx;
+	top:50%;
+	transform:translateY(-50%);
+}
+.avatar-box .icon-jiantouarrow487{
+	font-size: 60rpx;
+	color: #0fb7e0;
+}
+.txt{
+	color: gray;
+	position:relative;
+	bottom:10rpx;
+}
+.user-info view{
+	padding: 20rpx;
+	border-bottom: 1rpx solid #eee;
+}
+.save{
+	width: 50%;
+	margin-top: 80rpx;
+}
+.user-info input{
+	display: inline-block;
+	width: 70%;
+	position:absolute;
+	margin-left: 20rpx;
+}

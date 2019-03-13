@@ -1,28 +1,47 @@
 <view>
 	<veiw class="login">
-		<button
-			open-type="getUserInfo" 
-			class="userinfo-avatar"
-			style="background-image: url({{avatarUrl}})"
-	    ></button>
-	    <block class="info" wx:if="{{!logged}}">
+	    <image src="{{avatarUrl}}" class="userinfo-avatar" />
+	    <view class="info" wx:if="{{!logged}}">
 	    	<text>未登录</text>
-	    	<text>您还未登录，请点击登录</text>
-	    </block>
-	    <block class="info" wx:else>
+	    	<text class="detail">您还未登录，请点击登录</text>
+	    </view>
+	    <view class="info" wx:else>
 	    	<text>{{userInfo.nickName}}</text>
-	    	<text>请点击右侧按钮完善您的个人信息吧</text>
-	    </block>
-	    
-	    <button bindtap="checkLogin">检查登录态</button>
-	    <button bindtap="goLogin">登录</button>
+	    	<text class="detail">请点击右侧按钮完善您的个人信息吧</text>
+	    </view>
+	    <view class="arrow" bindtap="toUserInfo">
+	    	<text class="iconfont icon-jiantouarrow487"></text>
+	    </view>
 	</veiw>
 
 	<view class="order">
-		 
+		<view bindtap="toGoodsList">
+			<text class="iconfont order-icon icon-publish"></text>
+			<text>我发布的商品</text>
+	    	<text class="iconfont icon-jiantouarrow487"></text>
+		</view>
+		<view bindtap="toGoodsList">
+			<text class="iconfont order-icon icon-collection"></text>
+			<text>我喜欢的商品</text>
+	    	<text class="iconfont icon-jiantouarrow487"></text>
+		</view>
 	</view>
 
 	<view class="share">
+		<view>
+			<text class="iconfont share-icon icon-share"></text>
+			<text>分享给朋友</text>
+	    	<text class="iconfont icon-jiantouarrow487"></text>
+		</view>
+		<view>
+			<text class="iconfont share-icon icon-feedBack"></text>
+			<text>意见反馈</text>
+	    	<text class="iconfont icon-jiantouarrow487"></text>
+		</view>
 		
 	</view>
+
+
+	<button bindtap="checkLogin">检查登录态</button>
+	<button bindtap="goLogin">登录</button>
 </view>
