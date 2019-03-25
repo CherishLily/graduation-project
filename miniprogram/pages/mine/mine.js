@@ -1,3 +1,4 @@
+import Dialog from '../../miniprogram_npm/vant-weapp/dialog/dialog';
 const app = getApp()
 Page({
 
@@ -7,12 +8,26 @@ Page({
   data: {
     avatarUrl: 'cloud://dev-513b66.6465-dev-513b66/avatarUrl/user-unlogin.png',
     logged: false,
-    userInfo: {}
+    userInfo: {},
+    showLoading: false
   },
 
+  tapToLogin(){
+    Dialog.confirm({
+          title: '提示',
+          message: '点击确定进行登录'
+        }).then(() => {
+          // on confirm
+          this.goLogin();
 
+        });
+
+  },
   goLogin(){
     const that = this;
+    this.setData({
+      showLoading: true
+    })
     // const userInfo = {};
     wx.getUserInfo({
       success: data => {
@@ -33,11 +48,11 @@ Page({
                 },
                 success: result => {
                   console.log('登录成功,skey:',result);
-                  //获取用户信息
-                  that.getUserInfo();
                   //将skey存入storage
                   try {
                     wx.setStorageSync('skey',result.result.skey);
+                    //获取用户信息
+                    that.getUserInfo();
                   } catch (e) {
                       console.log(e);
                   }
@@ -68,25 +83,54 @@ Page({
         that.getUserInfo();
       },
       fail(){
-        console.log('您未登录或session_key已过期');
+        // console.log('您未登录或session_key已过期');
         //未登录或登录过期，重新登陆
-        // that.goLogin();
+        Dialog.confirm({
+          title: '登录已过期',
+          message: '您登录已过期,请点击确定重新登录！'
+        }).then(() => {
+          // on confirm
+          that.goLogin();
+
+        }).catch(() => {
+          // on cancel
+        });
       }
     })
 
   },
 
   getUserInfo(){
-    wx.getUserInfo({
-      success: res => {
-        console.log('用户信息：',res);
-        this.setData({
-          avatarUrl: res.userInfo.avatarUrl,
-          userInfo: res.userInfo,
-          logged: true
-        })
+    const that = this;
+    const skey = wx.getStorageSync('skey');
+      if (skey) {
+          //获取用户详细信息
+          // 调用云函数
+          wx.cloud.callFunction({
+              name: 'getDetail_info',
+              data: {
+                  skey,
+              },
+              success: result => {
+                  console.log(result.result.info);
+                  if(result.result.suc){
+                      that.setData({
+                          avatarUrl: result.result.info.avatarUrl,
+                          userInfo: result.result.info,
+                          logged: true
+                      })
+                  }else{
+                      console.log(result.result.info);
+                  }
+                  that.setData({
+                    showLoading: false
+                  })
+              },
+              fail: err => {
+                  console.log(err);
+              }
+          })
       }
-    })
   },
 
   toUserInfo(){
@@ -100,10 +144,8 @@ Page({
       url: '../goodsList/goodsList'
     })
   },
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad: function (options) {
+  
+  onShow: function (options) {
     try {
       const value = wx.getStorageSync('skey')
       if (value) {
@@ -113,59 +155,19 @@ Page({
       }else{
         console.log('您未登录');
         //没有skey，用户未登录
-        // this.goLogin();
+        Dialog.confirm({
+          title: '您未登录',
+          message: '您暂未登录,请点击确定去登录！'
+        }).then(() => {
+          // on confirm
+          this.goLogin();
+
+        }).catch(() => {
+          // on cancel
+        });
       }
     } catch (e) {
       console.log(e)
     }
-  },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-    
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-    
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-    
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-    
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-    
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-    
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-    
   }
 })

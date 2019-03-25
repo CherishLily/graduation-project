@@ -1,7 +1,7 @@
 <view>
 	<veiw class="login">
 	    <image src="{{avatarUrl}}" class="userinfo-avatar" />
-	    <view class="info" wx:if="{{!logged}}">
+	    <view bindtap="tapToLogin" class="info" wx:if="{{!logged}}">
 	    	<text>未登录</text>
 	    	<text class="detail">您还未登录，请点击登录</text>
 	    </view>
@@ -40,8 +40,8 @@
 		</view>
 		
 	</view>
+	<van-dialog id="van-dialog" />
 
-
-	<button bindtap="checkLogin">检查登录态</button>
-	<button bindtap="goLogin">登录</button>
+	<van-loading wx:if="{{showLoading}}" size="50px" class="custom-class" color="#fff" />
+	<view wx:if="{{showLoading}}" class="mask"></view>
 </view>

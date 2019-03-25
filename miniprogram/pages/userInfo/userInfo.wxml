@@ -7,38 +7,60 @@
 		</view>
 	</view>
 
-	<view class="user-info common-bg">
-		<view>
-			<text>昵称:</text>
-			<input type="text" />
+	<form bindsubmit="formSubmit">
+		<view class="user-info common-bg">
+			<view>
+				<text>昵称:</text>
+				<input bindinput="changeInfo" value="{{detailInfo.nickName}}" data-type="nickName" type="text" />
+			</view>
+			<view bindtap="chooseGender">
+				<text>性别:</text>
+				<text class="gender_txt">{{detailInfo.gender}}</text>
+			</view>
+			<view>
+				<text>个性签名:</text>
+				<input bindinput="changeInfo" value="{{detailInfo.autograph}}" data-type="autograph" type="text" />
+			</view>
+			<view>
+				<text>宿舍区:</text>
+				<input bindinput="changeInfo" value="{{detailInfo.dormitoryArea}}" data-type="dormitoryArea" type="text" />
+			</view>
 		</view>
-		<view>
-			<text>性别:</text>
-			<input type="text" />
-		</view>
-		<view>
-			<text>个性签名:</text>
-			<input type="text" />
-		</view>
-		<view>
-			<text>宿舍区:</text>
-			<input type="text" />
-		</view>
-	</view>
 
-	<view class="tip">
-		<text>下面的信息不被公开显示</text>
-	</view>
-	<view class="user-info common-bg">
-		<view>
-			<text>联系电话:</text>
-			<input type="text" />
+		<view class="tip">
+			<text>下面的信息不被公开显示</text>
 		</view>
-		<view>
-			<text>微信号:</text>
-			<input type="text" />
+		<view class="user-info common-bg">
+			<view>
+				<text>联系电话:</text>
+				<input bindinput="changeInfo" value="{{detailInfo.phoneNumber}}" data-type="phoneNumber" type="text" />
+			</view>
+			<view>
+				<text>微信号:</text>
+				<input bindinput="changeInfo" value="{{detailInfo.weChat}}" data-type="weChat" type="text" />
+			</view>
 		</view>
-	</view>
 
-	<button type="primary" class="save">保存</button>
+		<button form-type="submit" type="primary" class="save">保存</button>
+	</form>
+	<van-toast id="van-toast" />
+
+	<van-loading wx:if="{{showLoading}}" size="50px" class="custom-class" color="#fff" />
+	<view wx:if="{{showLoading}}" class="mask"></view>
+
+	<van-popup
+		show="{{ showPopup }}"
+		close-on-click-overlay="{{true}}"
+		class="custom-style"
+		position="bottom"
+		bind:close="onClosePopup"
+	>
+		<van-picker
+		  show-toolbar
+		  title="性别"
+		  columns="{{ columns }}"
+		  bind:cancel="onClosePopup"
+		  bind:confirm="onConfirm"
+		/>
+	</van-popup>
 </view>

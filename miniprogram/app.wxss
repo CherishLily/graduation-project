@@ -1,6 +1,7 @@
 /**app.wxss**/
 page{
 	background-color: #eee;
+  /*position: relative;*/
 }
 .userinfo-avatar {
   display: inline-block;
@@ -11,7 +12,35 @@ page{
   background-size: cover;
   background-color: white;
 }
+.mask{
+  width:100%;
+  height:100%;
+  position:fixed;
+  top:0;
+  z-index:1;
+  background-color:black;
+  opacity:0.2;
+}
+.custom-class{
+  z-index:99;
+  margin:auto;
+  position:absolute;
+  left:50%;
+  top:50%;
+  transform:translate(-50%,-50%);
+  background-color:black;
+  opacity:0.5;
+  border-radius:6rpx;
+  height: 120rpx;
+  width: 120rpx;
+}
+.van-loading{
+  position:absolute;
+  left:50%;
+  top:50%;
+  transform:translate(-50%,-50%);
 
+}
 /**在线字体代码start**/
 
 @font-face {

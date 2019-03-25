@@ -1,0 +1,36 @@
+.wrapper{
+	display:flex;
+	flex-direction:column;
+	align-items: center;
+}
+.old{
+	margin-top: 30rpx;
+	position: relative;
+	width: 90%;
+	height: 250rpx;
+	border-radius: 12rpx;
+}
+.old image{
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+	border-radius: 12rpx;
+}
+.old text{
+	color: white;
+	position: absolute;
+	left:50%;
+	top:50%;
+	transform:translate(-50%,-50%);
+	z-index: 99;
+}
+.s_mask{
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	background-color: black;
+	opacity: 0.5;
+	z-index: 1;
+	border-radius: 12rpx;
+}

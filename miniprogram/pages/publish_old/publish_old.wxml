@@ -1,0 +1,103 @@
+<view>
+	<view bindtap="tapToShow" class="goods-type">
+		<text wx:if="{{params.g_type !== ''}}">{{params.g_type}}</text>
+		<text wx:elif="{{params.pub_type === 1}}">书籍类型</text>
+		<text wx:else>商品类型</text>
+		<text class="iconfont icon-jiantouarrow487"></text>
+	</view>
+
+	<view class="main">
+		<view class="title">
+			<van-cell-group>
+				<van-field
+					placeholder="输入标题 品类品牌型号都是买家喜欢搜索的哟"
+					border="{{ false }}"
+					bind:change="saveMessage"
+					data-type="title"
+					error-message="{{ title_err }}"
+				/>
+			</van-cell-group>
+		</view>
+
+		<view class="description">
+			<van-cell-group>
+				<van-field
+				type="textarea"
+				placeholder="输入描述，品牌、规格、几成新、取货方式、购买渠道、转手原因等信息，建议150字以内哟~"
+				autosize
+				bind:change="saveMessage"
+				data-type="description"
+				border="{{ false }}"
+				error-message="{{ descrip_err }}"
+				/>
+			</van-cell-group>
+		</view>
+
+		<view class="pictures">
+			<view wx:key="{{index}}" class="img_item" wx:for="{{tempFilePaths}}">
+				<image mode="aspectFit" src="{{item}}" />
+				<van-icon bind:click="deletePic" data-index="{{index}}" name="close" />
+			</view>
+
+			<view bindtap="chooseImage" class="img_item upload-img">
+				<van-icon name="plus" />
+			</view>
+		</view>
+
+
+		<view class="new_tag">
+			<van-checkbox data-type="isNew" value="{{params.isNew}}" checked-color="#07c160" bind:change="saveMessage" name="1">全新宝贝</van-checkbox>
+		</view>
+	</view>
+
+	<view class="sale_detail">
+		<van-cell-group>
+			<van-field
+				placeholder="￥0.00"
+				border="{{ true }}"
+				bind:change="saveMessage"
+				data-type="price"
+				label="价格 :"
+				error-message="{{ price_err }}"
+				type="number"
+			/>
+			<van-field
+				placeholder="￥0.00"
+				border="{{ true }}"
+				bind:change="saveMessage"
+				data-type="pricein"
+				label="入手价 :"
+				type="number"
+			/>
+			<van-field
+			    label="联系方式 :"
+			    placeholder="请输入手机号"
+			    error-message="{{ phone_err }}"
+			    border="{{ true }}"
+			    bind:change="saveMessage"
+			    data-type="phone"
+			    type="number"
+			/>
+		</van-cell-group>
+	</view>
+
+	<button bindtap="toPublish" class="publish_btn" size="large">确认发布</button>
+
+
+
+	<van-popup
+		show="{{ showPopup }}"
+		close-on-click-overlay="{{true}}"
+		class="custom-style"
+		position="bottom"
+		bind:close="onClosePopup"
+	>
+		<van-picker
+		  show-toolbar
+		  title="商品类型"
+		  columns="{{ columns }}"
+		  bind:cancel="onClosePopup"
+		  bind:confirm="onConfirm"
+		/>
+	</van-popup>
+</view>

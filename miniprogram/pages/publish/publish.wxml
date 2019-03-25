@@ -1,1 +1,21 @@
-<view></view>
+<view class="wrapper">
+	<view bindtap="toPublish" class="old" data-type="0">
+		<image src="cloud://dev-513b66.6465-dev-513b66/Carousel/air.jpg" />
+		<text>发布二手物品信息</text>
+		<view class="s_mask"></view>
+	</view>
+
+
+	<view bindtap="toPublish" class="old" data-type="1">
+		<image src="cloud://dev-513b66.6465-dev-513b66/Carousel/timg.jpg" />
+		<text>发布二手书籍信息</text>
+		<view class="s_mask"></view>
+	</view>
+
+
+	<view bindtap="toPublish" class="old" data-type="2">
+		<image src="cloud://dev-513b66.6465-dev-513b66/Carousel/yishu.jpg" />
+		<text>发布免费赠送信息</text>
+		<view class="s_mask"></view>
+	</view>
+</view>

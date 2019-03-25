@@ -10,7 +10,8 @@ Page({
       'cloud://dev-513b66.6465-dev-513b66/Carousel/air.jpg',
       'cloud://dev-513b66.6465-dev-513b66/Carousel/damen.jpg',
       'cloud://dev-513b66.6465-dev-513b66/Carousel/timg.jpg',
-      'cloud://dev-513b66.6465-dev-513b66/Carousel/yishu.jpg'
+      'cloud://dev-513b66.6465-dev-513b66/Carousel/1460126225307738.jpg',
+      'cloud://dev-513b66.6465-dev-513b66/Carousel/thuibn.jpg'
     ],
     chooseNew: 1
   },

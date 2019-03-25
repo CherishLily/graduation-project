@@ -1,4 +1,4 @@
-// 云函数入口文件
+//获取个人详细信息
 const cloud = require('wx-server-sdk')
 
 cloud.init()
@@ -11,6 +11,13 @@ exports.main = async (event, context) => {
     		skey: skey
     	}).get();
 	let res = {};
+	const g_map = {
+		1: '男',
+		2: '女'
+	};
+	const gender = g_map[result.data[0].detailInfo.gender];
+	result.data[0].detailInfo.gender = gender;
+
 	if(result.data.length){
 		res = {
 			suc: true,

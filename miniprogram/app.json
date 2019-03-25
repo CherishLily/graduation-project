@@ -4,7 +4,8 @@
     "pages/publish/publish",
     "pages/mine/mine",
     "pages/userInfo/userInfo",
-    "pages/goodsList/goodsList"
+    "pages/goodsList/goodsList",
+    "pages/publish_old/publish_old"
   ],
   "window": {
     "backgroundColor": "#F6F6F6",

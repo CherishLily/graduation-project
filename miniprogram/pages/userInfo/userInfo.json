@@ -1,4 +1,9 @@
 {
-  "usingComponents": {},
+  "usingComponents": {
+  	"van-toast": "../../miniprogram_npm/vant-weapp/toast/index",
+  	"van-loading": "../../miniprogram_npm/vant-weapp/loading/index",
+  	"van-popup": "../../miniprogram_npm/vant-weapp/popup/index",
+  	"van-picker": "../../miniprogram_npm/vant-weapp/picker/index"
+  },
   "navigationBarTitleText": "个人信息详情"
 }

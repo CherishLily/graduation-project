@@ -42,3 +42,6 @@
 	position:absolute;
 	margin-left: 20rpx;
 }
+.gender_txt{
+	padding-left: 20rpx
+}
