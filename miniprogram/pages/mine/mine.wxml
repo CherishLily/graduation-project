@@ -2,8 +2,9 @@
 	<veiw class="login">
 	    <image src="{{avatarUrl}}" class="userinfo-avatar" />
 	    <view bindtap="tapToLogin" class="info" wx:if="{{!logged}}">
-	    	<text>未登录</text>
-	    	<text class="detail">您还未登录，请点击登录</text>
+	    	<!-- <text>未登录</text> -->
+	    	<button class="log_btn" open-type="getUserInfo" bindgetuserinfo="bindGetUserInfo">点击登录</button>
+	    	<text class="detail">您还未登录，请点击授权登录</text>
 	    </view>
 	    <view class="info" wx:else>
 	    	<text>{{userInfo.nickName}}</text>
@@ -15,13 +16,13 @@
 	</veiw>
 
 	<view class="order">
-		<view bindtap="toGoodsList">
-			<text class="iconfont order-icon icon-publish"></text>
+		<view bindtap="toGoodsList" data-page="myGoodsList">
+			<text class="iconfont order-icon icon-fabu"></text>
 			<text>我发布的商品</text>
 	    	<text class="iconfont icon-jiantouarrow487"></text>
 		</view>
-		<view bindtap="toGoodsList">
-			<text class="iconfont order-icon icon-collection"></text>
+		<view bindtap="toGoodsList" data-page="likeGoodsList">
+			<text class="iconfont order-icon icon-xihuan"></text>
 			<text>我喜欢的商品</text>
 	    	<text class="iconfont icon-jiantouarrow487"></text>
 		</view>
@@ -29,12 +30,12 @@
 
 	<view class="share">
 		<view>
-			<text class="iconfont share-icon icon-share"></text>
+			<text class="iconfont share-icon icon-fenxiang"></text>
 			<text>分享给朋友</text>
 	    	<text class="iconfont icon-jiantouarrow487"></text>
 		</view>
 		<view>
-			<text class="iconfont share-icon icon-feedBack"></text>
+			<text class="iconfont icon-yijianfankui share-icon"></text>
 			<text>意见反馈</text>
 	    	<text class="iconfont icon-jiantouarrow487"></text>
 		</view>

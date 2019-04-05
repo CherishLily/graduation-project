@@ -1,0 +1,7 @@
+{
+	"usingComponents": {
+		"van-tag": "../../miniprogram_npm/vant-weapp/tag/index",
+		"van-icon": "../../miniprogram_npm/vant-weapp/icon/index",
+		"van-dialog": "../../miniprogram_npm/vant-weapp/dialog/index"
+	}
+}

@@ -2,9 +2,6 @@
 	background-color: white;
 	margin-top: 20rpx;
 }
-.slide-image{
-  width: 750rpx;
-}
 .search{
 	margin: 10rpx;
 	height: 60rpx;
@@ -76,3 +73,9 @@
 .item-border{
 	border-bottom: 1px solid #249ed9;
 }
+.van-tag{
+  float:right;
+  position:relative;
+  right:100rpx;
+}
+

@@ -2,80 +2,90 @@ const app = getApp()
 
 Page({
 
-  /**
-   * 页面的初始数据
-   */
-  data: {
-    imgUrls: [
-      'cloud://dev-513b66.6465-dev-513b66/Carousel/air.jpg',
-      'cloud://dev-513b66.6465-dev-513b66/Carousel/damen.jpg',
-      'cloud://dev-513b66.6465-dev-513b66/Carousel/timg.jpg',
-      'cloud://dev-513b66.6465-dev-513b66/Carousel/1460126225307738.jpg',
-      'cloud://dev-513b66.6465-dev-513b66/Carousel/thuibn.jpg'
-    ],
-    chooseNew: 1
-  },
+    /**
+    * 页面的初始数据
+    */
+    data: {
+        imgUrls: [
+            'cloud://dev-513b66.6465-dev-513b66/Carousel/air.jpg',
+            'cloud://dev-513b66.6465-dev-513b66/Carousel/damen.jpg',
+            'cloud://dev-513b66.6465-dev-513b66/Carousel/timg.jpg',
+            'cloud://dev-513b66.6465-dev-513b66/Carousel/yishu.jpg'
+        ],
+        chooseNew: 1,
+        goods_list: [],
+        startNum: 0,
+        lastData: false
+    },
 
-  changeChoice(event) {
-    const tag = parseInt(event.currentTarget.dataset.tag, 10);
-    this.setData({
-      chooseNew: tag
-    });
-  },
+    changeChoice(event) {
+        const tag = parseInt(event.currentTarget.dataset.tag, 10);
+        this.setData({
+            chooseNew: tag
+        });
+    },
 
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad: function (options) {
-    
-  },
+    initList(startNum){
+        const that = this;
+        wx.showLoading({
+            title: '加载中'
+        })
+        wx.cloud.callFunction({
+            name: 'getGoods_list',
+            data: {
+                startNum
+            },
+            success: res => {
+                console.log(res);
+                wx.stopPullDownRefresh(); // 停止下拉刷新
+                wx.hideLoading();
+                const { isLast } = res.result;
+                let reverseList = res.result.list.data.reverse();
+                if(startNum){
+                    //startNum不为0时，拼接到goods_list的后面
+                    reverseList = that.data.goods_list.concat(reverseList);
+                }
+                that.setData({
+                    goods_list: reverseList,
+                    lastData: isLast
+                });
+            },
+            fail: err => {
+                wx.hideLoading();
+                console.log(err);
+            }
+        })
+    },
 
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-    
-  },
+    /**
+    * 生命周期函数--监听页面显示
+    */
+    onShow() {
+        this.initList(0);
+    },
 
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-    
-  },
+    /**
+    *上拉加载
+    */
+    onReachBottom(){
+        console.log('上拉加载')
+        const { startNum, lastData } = this.data;
+        if(!lastData){
+            this.initList(startNum + 1);
+        }
 
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-    
-  },
+    },
 
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-    
-  },
+    /**
+    *下拉刷新
+    */
+    onPullDownRefresh(){
+        this.initList(0);
+    },
 
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-    
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-    
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-    
-  }
+    tapToDetail(e){
+        wx.navigateTo({
+            url: `../goodsDetail/goodsDetail?id=${e.currentTarget.dataset.id}`
+        });
+    }
 })

@@ -222,8 +222,13 @@ Page({
         if(temp){
             wx.showLoading({
                 title: '发布中',
-            })
-            
+            });
+            const { nickName, avatarUrl } = app.globalData.userInfo;
+            params.userDetail = {
+                nickName,
+                avatarUrl
+            }
+            console.log(params);
             wx.cloud.callFunction({
                 name: 'publish_goods',
                 data: params,

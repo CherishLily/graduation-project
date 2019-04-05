@@ -1,0 +1,150 @@
+page{
+	background-color: #f7f6e5;
+}
+.detail_swiper{
+	height: 480rpx;
+}
+.laba{
+	display: inline-block;
+	width: 80rpx;
+	height: 80rpx;
+	margin: 20rpx;
+	border-radius: 50%;
+	background-color: #bbb084;
+	position: relative;
+}
+.icon-trumpetlaba{
+	color: white;
+	font-size: 42rpx;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%,-50%);
+}
+.t_left{
+	display: flex;
+	flex-direction: column;
+	width: 74%;
+}
+.t_box{
+	display: flex;
+	flex-direction: row;
+	background-color: white;
+	justify-content: space-between;
+}
+.t_price{
+	width: 26%;
+	background-color: #f56538;
+	color: white;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	text-align: center;
+}
+.t_title{
+	width: 90%;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	color: #ad8b0b;
+	font-size: 32rpx;
+	padding: 20rpx;
+}
+.t_type{
+	font-size: 26rpx;
+	padding-left: 20rpx;
+	padding-bottom: 20rpx;
+}
+.t_type text{
+	color: #0fb7e0;
+}
+.avater{
+	display:flex;
+	flex-direction:row;
+	align-items:center;
+	background-color:white;
+	margin-top:30rpx;
+	color:#1e98c9;
+}
+.goods_des{
+	display: flex;
+	flex-direction: row;
+	margin-top: 30rpx;
+	margin-left:12rpx
+}
+.des{
+	background-color: white;
+	width: 80%;
+	position:relative;
+	left:-42rpx;
+	z-index:-1;
+	display:flex;
+	flex-direction:column;
+	justify-content:center;
+	color:#ad8b0b;
+	font-size:30rpx;
+	border-radius: 10rpx;
+	padding: 20rpx 40rpx;
+	line-height:46rpx;
+}
+.pricein{
+	font-size:24rpx;
+	text-decoration:line-through;
+}
+.foo{
+	height: 140rpx;
+	background-color: #9bcae6;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-around;
+	align-items: center;
+	position: fixed;
+	bottom:0rpx;
+	width:100%;
+}
+.call{
+	background-color: #f56538;
+	width: 40%;
+	border-radius: 42rpx;
+	border: 2rpx solid white;
+	color: white;
+	height: 80rpx;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	z-index: 99;
+}
+.van-tag{
+	margin-left: 20rpx;
+}
+.foo .icon-fenxiang{
+	color: white;
+}
+.foo .iconfont, .foo .van-icon-like-o, .foo .van-icon-like{
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%);
+	font-size:50rpx;
+}
+.share, .like{
+	width: 80rpx;
+	height: 80rpx;
+	border: 2rpx solid white;
+	border-radius: 50%;
+	position: relative;
+	z-index: 99;
+}
+.share{
+	background-color: #7cc8a2;
+}
+.like{
+	background-color: #face2a;
+}
+.line{
+	width: 100%;
+	background-color: white;
+	position: fixed;
+	bottom : 70rpx;
+	height: 2rpx;
+}

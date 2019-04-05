@@ -1,0 +1,8 @@
+.like_goods_list{
+	background-color: white;
+}
+.van-tag{
+  float:right;
+  position:relative;
+  right:100rpx;
+}

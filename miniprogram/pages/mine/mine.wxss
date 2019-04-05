@@ -51,3 +51,8 @@
 	margin-right: 20rpx;
 	/*color: gray;*/
 }
+.log_btn{
+	position:relative;
+	right:125rpx;
+	font-size: 32rpx;
+}

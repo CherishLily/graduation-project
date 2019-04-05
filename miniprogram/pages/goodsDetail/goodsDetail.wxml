@@ -1,0 +1,61 @@
+<view>
+	<swiper
+		class="detail_swiper"
+	    autoplay="true"
+	    interval="3000"
+	    duration="500"
+	    indicator-dots="true"
+    >
+        <block wx:for="{{good_imgs}}" wx:key="{{index}}">
+            <swiper-item>
+                <image src="{{item}}" mode="aspectFill" class="slide-image" />
+            </swiper-item>
+        </block>
+    </swiper>
+
+    <view class="t_box">
+    	<view class="t_left">
+    		<text class="t_title">{{detail.title}}</text>
+    		<view class="t_type">
+    			<text>类型标签：<text>{{detail.g_type}}</text></text>
+    			<van-tag wx:if="{{detail.isNew}}" plain type="success">全新宝贝</van-tag>
+    		</view>
+    	</view>
+    	<view class="t_price">
+    		<text>￥{{detail.price}}</text>
+    		<text class="pricein">入手价：￥{{detail.pricein}}</text>
+    	</view>
+    </view>
+
+	<view class="avater">
+		<image src="{{detail.userDetail.avatarUrl}}" class="userinfo-avatar mini-avatar" />
+		<text>{{detail.userDetail.nickName}}</text>
+	</view>
+	<view class="goods_des">
+		<view class="laba">
+			<text class="iconfont icon-trumpetlaba"></text>
+		</view>
+		<view class="des">
+			<text>{{detail.description}}</text>
+		</view>
+	</view>
+
+	<view class="foo">
+		<view>
+			<button open-type="share" class="share">
+				<text class="iconfont icon-fenxiang"></text>
+			</button>
+		</view>
+		<view bindtap="makePhoneCall" class="call">
+			<text>联系卖家</text>
+		</view>
+		<view class="like" bindtap="modifyLikeGoods">
+			<van-icon wx:if="{{!isLike}}" name="like-o" color="white" />
+			<van-icon wx:if="{{isLike}}" name="like" color="red" />
+		</view>
+		<view class="line"></view>
+	</view>
+
+	<van-dialog id="van-dialog" />
+
+</view>

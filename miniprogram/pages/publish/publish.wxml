@@ -15,7 +15,9 @@
 
 	<view bindtap="toPublish" class="old" data-type="2">
 		<image src="cloud://dev-513b66.6465-dev-513b66/Carousel/yishu.jpg" />
-		<text>发布免费赠送信息</text>
+		<text>发布失物招领信息</text>
 		<view class="s_mask"></view>
 	</view>
+
+	<van-dialog id="van-dialog" />
 </view>
