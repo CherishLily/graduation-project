@@ -21,9 +21,12 @@
     			<van-tag wx:if="{{detail.isNew}}" plain type="success">全新宝贝</van-tag>
     		</view>
     	</view>
-    	<view class="t_price">
+    	<view wx:if="{{status == 1}}" class="t_price">
     		<text>￥{{detail.price}}</text>
     		<text class="pricein">入手价：￥{{detail.pricein}}</text>
+    	</view>
+    	<view class="t_price" wx:if="{{status == 0}}">
+    		<text>商品已下架</text>
     	</view>
     </view>
 

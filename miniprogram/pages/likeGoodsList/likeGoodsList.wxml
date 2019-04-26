@@ -29,8 +29,12 @@
                     <text>#{{item.g_type}}</text>
                     <van-tag wx:if="{{item.isNew}}" plain type="success">全新宝贝</van-tag>
                 </view>
-                <text class="pub_time">{{item.pub_time}}</text>
+                <text class="pub_time">{{item.pub_time}} | {{item.likeNum}}人喜欢</text>
             </view>
         </view>
+    </view>
+
+    <view class="no-likes" wx:if="{{!goods_list.length}}">
+        <text class="empty">您暂时还没有喜欢的商品哟~</text>
     </view>
 </view>

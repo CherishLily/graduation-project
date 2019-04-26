@@ -1,0 +1,41 @@
+.decrip{
+	display: flex;
+	flex-direction: row;
+}
+.des_txt{
+	margin-top: 20rpx;
+	font-size: 28rpx;
+	margin-left: 10rpx;
+}
+.des_txt .title, .description{
+	display: block;
+	width: 360rpx;
+	overflow: hidden; 
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+.description{
+	font-size: 24rpx;
+	color: gray;
+	margin-top: 10rpx;
+}
+.t_box{
+	padding-bottom: 20rpx;
+}
+.msg-item{
+	background-color: white;
+}
+.van-button--default{
+	color: #a0a0a0 !important;
+	border: solid 1px #a0a0a0 !important;
+	background-color: white !important;
+	margin-left: 30rpx;
+}
+.item_right{
+	position: relative;
+}
+.btns{
+	position: absolute;
+	bottom: 90rpx;
+	left: 200rpx;
+}

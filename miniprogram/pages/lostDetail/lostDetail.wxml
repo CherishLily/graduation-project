@@ -1,0 +1,54 @@
+<view>
+	<view class="top-title">
+		<text>失物招领详情</text>
+	</view>
+	<swiper
+        class="detail-swiper"
+        autoplay="true"
+        interval="3000"
+        duration="500"
+	    indicator-dots="true"
+    >
+        <block wx:for="{{detail.pic_url}}" wx:key="*this">
+            <swiper-item>
+                <image src="{{item}}" class="lost-image"/>
+            </swiper-item>
+        </block>
+    </swiper>
+
+    <view class="detail">
+    	<view class="d_item">
+    		<van-icon size="40px" color="#6495c6" name="location-o" />
+    		<view class="right">
+    			<text class="title">
+    				<text wx:if="{{detail.type_num === 1}}">拾到</text>
+    				<text wx:if="{{detail.type_num === 0}}">丢失</text>
+    				<text>地点</text>
+    			</text>
+    			<text>{{detail.address}}</text>
+    		</view>
+    	</view>
+    	<view class="d_item">
+    		<van-icon size="40px" color="#6495c6" name="clock-o" />
+    		<view class="right">
+    			<text class="title">
+    				<text wx:if="{{detail.type_num === 1}}">拾到</text>
+    				<text wx:if="{{detail.type_num === 0}}">丢失</text>
+    				<text>时间</text>
+    			</text>
+    			<text>{{detail.f_time}}</text>
+    		</view>
+    	</view>
+    	<view class="d_item">
+    		<van-icon size="40px" color="#6495c6" name="records" />
+    		<view class="right">
+    			<text class="title">物品描述</text>
+    			<text>{{detail.description}}</text>
+    		</view>
+    	</view>
+    </view>
+
+    <view class="phone-call" bindtap="makePhoneCall">
+    	<van-icon color="#6495c6" class="call_icon" size="30px" name="phone" />
+    </view>
+</view>

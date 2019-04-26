@@ -23,7 +23,8 @@ exports.main = async (event, context) => {
 		openid,
 		pic_url,
 		pub_time,
-		userDetail
+		userDetail,
+		likeNum: 0
 	}
 	let add_res = {};
 	try{

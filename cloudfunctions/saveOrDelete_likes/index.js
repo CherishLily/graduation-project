@@ -40,6 +40,12 @@ exports.main = async (event, context) => {
 				}
 			});
 		}
+
+		await db.collection('goods').doc(goods_id).update({
+			data:{
+				likeNum: _.inc(1)
+			}
+		})
 		
 	}else{
 		//删除喜欢的商品
@@ -55,6 +61,12 @@ exports.main = async (event, context) => {
 				}
 			});
 		}
+
+		await db.collection('goods').doc(goods_id).update({
+			data:{
+				likeNum: _.inc(-1)
+			}
+		})
 	}
 
 	return res;

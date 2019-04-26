@@ -83,7 +83,7 @@ Page({
 
 	tapToDetail(e){
         wx.navigateTo({
-            url: `../goodsDetail/goodsDetail?id=${e.currentTarget.dataset.id}`
+            url: `../goodsDetail/goodsDetail?id=${e.currentTarget.dataset.id}&status=1`
         });
     }
 })

@@ -13,9 +13,15 @@ Page({
         const { logged } = app.globalData;
         if(logged){
             const {type} = e.currentTarget.dataset;
-            wx.navigateTo({
-                url: `../publish_old/publish_old?pub_type=${type}`
-            })
+            if(type == 2){
+                wx.navigateTo({
+                    url: '../publish_lost/publish_lost'
+                })
+            }else{
+                wx.navigateTo({
+                    url: `../publish_old/publish_old?pub_type=${type}`
+                })
+            }
         }else{
             Dialog.alert({
                 title: '未登录',

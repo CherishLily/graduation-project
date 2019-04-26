@@ -2,9 +2,9 @@
     <view class="search">
         <view class="ipt-box">
             <text class="iconfont icon-icon_search"></text>
-            <input class="search-ipt" maxlength="20" type="text" placeholder="请输入查询内容" />
+            <input class="search-ipt" bindinput="saveSearchKey" maxlength="20" type="text" placeholder="请输入查询内容" />
         </view>
-        <button class="search-btn">搜索</button>
+        <button bindtap="toSearchList" class="search-btn">搜索</button>
     </view>
     <swiper
         class="home-swiper"
@@ -23,7 +23,15 @@
         <view class="hot">
             <view class="h-tag">
                 <view class="v-line"></view>
-                <text class="tit">近期热门</text>
+                <text class="tit">热门分类</text>
+            </view>
+            <view class="classify">
+                <view bindtap="toClassifyList" data-classify="{{item.txt}}" wx:for="{{classify_list}}" wx:key="{{item.txt}}" class="classify-item">
+                    <view class="img_box">
+                        <image src="{{item.icon}}" />
+                    </view>
+                    <text class="txt">{{item.txt}}</text>
+                </view>
             </view>
             
         </view>
@@ -32,17 +40,19 @@
         <view class="main-msg">
             <!-- 导航条 -->
             <view class="tab">
-                <view bindtap="changeChoice" data-tag="1" class='{{chooseNew ? "tab-item item-border" : "tab-item"}}'>
-                    <text class='{{chooseNew ? "tit-b" : "tit"}}'>最新信息</text>
+                <view bindtap="changeChoice" data-tag="1" class='{{choose ? "tab-item item-border" : "tab-item"}}'>
+                    <text class='{{choose ? "tit-b" : "tit"}}'>二手市场</text>
                 </view>
-                <view bindtap="changeChoice" data-tag="0" class='{{chooseNew ? "tab-item" : "tab-item item-border"}}'>
-                    <text class='{{chooseNew ? "tit" : "tit-b"}}'>免费专区</text>
+                <view bindtap="changeChoice" data-tag="0" class='{{choose ? "tab-item" : "tab-item item-border"}}'>
+                    <text class='{{choose ? "tit" : "tit-b"}}'>失物招领</text>
                 </view>
             </view>
 
             <!-- 列表 -->
             <view class="msg-list">
-                <view bindtap="tapToDetail" data-id="{{item._id}}" class="msg-item" wx:key="{{index}}" wx:for="{{goods_list}}">
+
+                <!-- 二手商品列表 -->
+                <view wx:if="{{choose == 1}}" bindtap="tapToDetail" data-id="{{item._id}}" class="msg-item" wx:key="{{item._id}}" wx:for="{{goods_list}}">
                     <image 
                         src="{{item.userDetail.avatarUrl}}" 
                         class="userinfo-avatar mini-avatar"
@@ -72,10 +82,44 @@
                                 <text>#{{item.g_type}}</text>
                                 <van-tag wx:if="{{item.isNew}}" plain type="success">全新宝贝</van-tag>
                             </view>
-                            <text class="pub_time">{{item.pub_time}}</text>
+                            <text class="pub_time">{{item.pub_time}} | {{item.likeNum}}人喜欢</text>
                         </view>
                     </view>
                 </view>
+
+                <!-- 失物招领列表 -->
+                <view wx:if="{{choose == 0}}" bindtap="tapToLostDetail" data-id="{{item._id}}" class="msg-item" wx:key="{{item._id}}" wx:for="{{lost_list}}">
+                    <image 
+                        src="{{item.userDetail.avatarUrl}}" 
+                        class="userinfo-avatar mini-avatar"
+                    />
+                    <view class="item_right">
+                        <view class="nickName">
+                            <text>{{item.userDetail.nickName}}</text>
+                        </view>
+                        <view class="decrip">
+                            <view>
+                                <image
+                                    src="{{item.pic_url[0]}}"
+                                    class="goods_pic"
+                                />
+                            </view>
+                            <view class="des_txt">
+                                <text class="title">{{item.title}}</text>
+                                <text class="description">{{item.description}}</text>
+                            </view>
+                        </view>
+                        <view class="t_box">
+                            <view class="g_type">
+                                <text>#{{item.type}}</text>
+                            </view>
+                            <text class="pub_time">{{item.pub_time}}</text>
+                        </view>
+                    </view>
+                    
+                </view>
+
+
                 <view class="footer" wx:if="{{lastData}}">
                     <text>没有更多数据了哟~</text>
                 </view>

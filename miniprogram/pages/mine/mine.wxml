@@ -1,7 +1,7 @@
 <view>
 	<veiw class="login">
 	    <image src="{{avatarUrl}}" class="userinfo-avatar" />
-	    <view bindtap="tapToLogin" class="info" wx:if="{{!logged}}">
+	    <view class="info" wx:if="{{!logged}}">
 	    	<!-- <text>未登录</text> -->
 	    	<button class="log_btn" open-type="getUserInfo" bindgetuserinfo="bindGetUserInfo">点击登录</button>
 	    	<text class="detail">您还未登录，请点击授权登录</text>
@@ -26,9 +26,14 @@
 			<text>我喜欢的商品</text>
 	    	<text class="iconfont icon-jiantouarrow487"></text>
 		</view>
+		<view bindtap="toMyLostList">
+			<text class="iconfont order-icon icon-shiwuzhaoling"></text>
+			<text>我的失物招领</text>
+	    	<text class="iconfont icon-jiantouarrow487"></text>
+		</view>
 	</view>
 
-	<view class="share">
+	<!-- <view class="share">
 		<view>
 			<text class="iconfont share-icon icon-fenxiang"></text>
 			<text>分享给朋友</text>
@@ -40,7 +45,7 @@
 	    	<text class="iconfont icon-jiantouarrow487"></text>
 		</view>
 		
-	</view>
+	</view> -->
 	<van-dialog id="van-dialog" />
 
 	<van-loading wx:if="{{showLoading}}" size="50px" class="custom-class" color="#fff" />

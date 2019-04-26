@@ -1,0 +1,108 @@
+<view>
+	<view bindtap="tapToShow" class="goods-type">
+		<text wx:if="{{params.type !== ''}}">{{params.type}}</text>
+		<text wx:else>发布类型</text>
+		<text class="iconfont icon-jiantouarrow487"></text>
+	</view>
+
+	<view class="main">
+		<view class="title">
+			<van-cell-group>
+				<van-field
+					placeholder="输入标题,拾到或丢失的物品类型等"
+					border="{{ false }}"
+					bind:change="saveMessage"
+					data-type="title"
+					error-message="{{ title_err }}"
+				/>
+			</van-cell-group>
+		</view>
+
+		<view class="description">
+			<van-cell-group>
+				<van-field
+				type="textarea"
+				placeholder="输入描述,拾到或丢失物品的具体描述"
+				autosize
+				bind:change="saveMessage"
+				data-type="description"
+				border="{{ false }}"
+				error-message="{{ descrip_err }}"
+				/>
+			</van-cell-group>
+		</view>
+
+		<view class="pictures">
+			<view wx:key="{{index}}" class="img_item" wx:for="{{tempFilePaths}}">
+				<image mode="aspectFit" src="{{item}}" />
+				<van-icon bind:click="deletePic" data-index="{{index}}" name="close" />
+			</view>
+
+			<view bindtap="chooseImage" class="img_item upload-img">
+				<van-icon name="plus" />
+			</view>
+		</view>
+	</view>
+
+	<view class="sale_detail">
+		<van-cell-group>
+			<van-field
+			    label="地点 :"
+			    placeholder="拾取或丢失物品地点"
+			    error-message="{{ address_err }}"
+			    border="{{ true }}"
+			    bind:change="saveMessage"
+			    data-type="address"
+			    type="text"
+			/>
+			<van-field
+			    label="时间 :"
+			    placeholder="拾取或丢失物品时间"
+			    error-message="{{ time_err }}"
+			    border="{{ true }}"
+			    type="text"
+			    value="{{params.f_time}}"
+			    bindtap="toShowDatePicker"
+			/>
+			
+			<van-field
+			    label="联系方式 :"
+			    placeholder="请输入手机号"
+			    error-message="{{ phone_err }}"
+			    border="{{ true }}"
+			    bind:change="saveMessage"
+			    data-type="phone"
+			    type="number"
+			/>
+		</van-cell-group>
+	</view>
+
+	<button bindtap="toPublish" class="publish_btn" size="large">确认发布</button>
+
+	<van-popup show="{{showDatePicker}}" close-on-click-overlay="true" position="bottom" bind:close="closeDatePicker">
+		<van-datetime-picker
+			type="datetime"
+			value="{{ currentDate }}"
+			min-date="{{ minDate }}"
+			max-date="{{ maxDate }}"
+			bind:cancel="closeDatePicker"
+		  	bind:confirm="chooseDate"
+		/>
+	</van-popup>
+
+	<van-popup
+		show="{{ showPopup }}"
+		close-on-click-overlay="{{true}}"
+		class="custom-style"
+		position="bottom"
+		bind:close="onClosePopup"
+	>
+		<van-picker
+		  show-toolbar
+		  title="发布类型"
+		  columns="{{ columns }}"
+		  bind:cancel="onClosePopup"
+		  bind:confirm="onConfirm"
+		/>
+	</van-popup>
+</view>

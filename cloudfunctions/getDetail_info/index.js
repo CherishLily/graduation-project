@@ -10,23 +10,20 @@ exports.main = async (event, context) => {
 	const result = await db.collection('userInfo').where({
     		skey: skey
     	}).get();
-	let res = {};
-	const g_map = {
-		1: '男',
-		2: '女'
+	let res = {
+		suc: false,
+		info: '您未登录或登录已过期'
 	};
-	const gender = g_map[result.data[0].detailInfo.gender];
-	result.data[0].detailInfo.gender = gender;
-
 	if(result.data.length){
+		const g_map = {
+			1: '男',
+			2: '女'
+		};
+		const gender = g_map[result.data[0].detailInfo.gender];
+		result.data[0].detailInfo.gender = gender;
 		res = {
 			suc: true,
 			info: result.data[0].detailInfo
-		}
-	}else{
-		res = {
-			suc: false,
-			info: '您未登录或登录已过期'
 		}
 	}
 

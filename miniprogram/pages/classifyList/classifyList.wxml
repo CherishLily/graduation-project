@@ -1,0 +1,39 @@
+<view class="like_goods_list">
+	<view bindtap="tapToDetail" data-id="{{item._id}}" class="msg-item" wx:key="{{index}}" wx:for="{{goods_list}}">
+        <image 
+            src="{{item.userDetail.avatarUrl}}" 
+            class="userinfo-avatar mini-avatar"
+        />
+        <view class="item_right">
+            <view class="nickName">
+                <text>{{item.userDetail.nickName}}</text>
+            </view>
+            <view class="item_title">
+                <text>{{item.title}}</text>
+            </view>
+            <view class="price">
+                <text class="tag">￥</text><text>{{item.price}}</text>
+            </view>
+            <view class="pic_box">
+                <image
+                    wx:for="{{item.pic_url}}" 
+                    wx:for-item="img"
+                    wx:for-index="idx" 
+                    wx:key="{{index}}-{{idx}}" 
+                    src="{{img}}"
+                    class="goods_pic"
+                />
+            </view>
+            <view class="txt_box">
+                <view class="g_type">
+                    <text>#{{item.g_type}}</text>
+                    <van-tag wx:if="{{item.isNew}}" plain type="success">全新宝贝</van-tag>
+                </view>
+                <text class="pub_time">{{item.pub_time}} | {{item.likeNum}}人喜欢</text>
+            </view>
+        </view>
+    </view>
+	<view class="no-likes" wx:if="{{noData}}">
+        <text class="empty">暂无数据~</text>
+    </view>
+</view>

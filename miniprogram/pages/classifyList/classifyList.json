@@ -1,0 +1,5 @@
+{
+  "usingComponents": {
+    "van-tag": "../../miniprogram_npm/vant-weapp/tag/index"
+  }
+}

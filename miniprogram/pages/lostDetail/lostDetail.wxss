@@ -1,0 +1,55 @@
+page{
+	background-color: white;
+}
+.top-title{
+	width: 100%;
+	text-align: center;
+	margin-top: 40rpx;
+	margin-bottom: 40rpx;
+	font-size: 30rpx;
+}
+.detail-swiper, .detail{
+	margin: auto;
+	width: 610rpx;
+}
+.lost-image{
+	width: 610rpx;
+}
+.d_item{
+	width: 610rpx;
+	box-shadow:-3rpx 8rpx 10rpx #eee;
+	margin-top:25px;
+	padding: 20rpx;
+	display:flex;
+	align-items:center;
+}
+.d_item .right{
+	margin-left: 10rpx;
+}
+.d_item{
+	font-size: 26rpx;
+	color: gray;
+}
+.d_item .title{
+	font-size: 28rpx;
+	color: black;
+	display: block;
+	margin-bottom: 10rpx;
+}
+.phone-call{
+	width: 100rpx;
+	height: 100rpx;
+	border-radius: 50%;
+	box-shadow: 0rpx 10rpx 20rpx #eee;
+	border: 1rpx solid #fafafa;
+	position: fixed;
+	right: 30rpx;
+	bottom: 130rpx;
+}
+.call_icon{
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%);
+
+}

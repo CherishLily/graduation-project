@@ -1,3 +1,58 @@
 <view>
-	<text>发布商品列表</text>
+	<van-tabs active="{{ active }}">
+		<van-tab title="在售商品">
+			<view wx:for="{{sale_list}}" data-status="1" wx:key="{{index}}" class="list_item" bindtap="tapToDetail" data-id="{{item._id}}">
+				<image src="{{item.pic_url[0]}}" />
+				<view class="g_center">
+					<view class="goods_msg">
+						<text class="g_tit">{{item.title}}</text>
+						<text class="g_desc">{{item.description}}</text>
+						<text class="like_num">{{item.likeNum}}人喜欢</text>
+						<text class="pub_time">{{item.pub_time}}</text>
+					</view>
+				</view>
+				<view class="g_right">
+					<view class="p_box">
+						<text class="p_tag">￥</text><text>{{item.price}}</text>
+					</view>
+					<view class="btns">
+						<van-button data-gid="{{item._id}}" data-type="0" data-index="{{index}}" catchtap="ifPullOff" plain round size="mini" type="danger">下架</van-button>
+						<van-button data-gid="{{item._id}}" data-status="1" data-type="1" data-index="{{index}}" catchtap="ifPullOff" plain round size="mini" type="default">删除</van-button>
+
+					</view>
+				</view>
+			</view>
+			<view class="no-likes" wx:if="{{noSale}}">
+				<text class="empty">您暂时还没有在售商品哟~</text>
+			</view>
+		</van-tab>
+		<van-tab title="下架商品">
+			<view wx:for="{{unsale_list}}" data-status="0" wx:key="{{index}}" class="list_item" bindtap="tapToDetail" data-id="{{item._id}}">
+				<image src="{{item.pic_url[0]}}" />
+				<view class="g_center">
+					<view class="goods_msg">
+						<text class="g_tit">{{item.title}}</text>
+						<text class="g_desc">{{item.description}}</text>
+						<text class="like_num">{{item.likeNum}}人喜欢</text>
+						<text class="pub_time">{{item.pub_time}}</text>
+					</view>
+				</view>
+				<view class="g_right">
+					<view class="p_box">
+						<text class="p_tag">￥</text><text>{{item.price}}</text>
+					</view>
+					<view class="btns">
+						<van-button plain round data-gid="{{item._id}}" data-type="2" data-index="{{index}}" catchtap="ifPullOff" size="mini" type="danger">重新发布</van-button>
+						<van-button data-gid="{{item._id}}" data-status="0" data-type="1" data-index="{{index}}" catchtap="ifPullOff" plain round size="mini" type="default">删除</van-button>
+
+					</view>
+				</view>
+			</view>
+			<view class="no-likes" wx:if="{{noUnsale}}">
+				<text class="empty">暂无数据</text>
+			</view>
+		</van-tab>
+	</van-tabs>
+
+	<van-dialog id="van-dialog" />
 </view>

@@ -1,0 +1,8 @@
+.msg-item{
+	background-color: white;
+}
+.van-tag{
+  float:right;
+  position:relative;
+  right:100rpx;
+}

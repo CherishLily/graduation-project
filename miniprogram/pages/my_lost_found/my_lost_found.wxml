@@ -1,0 +1,79 @@
+<view>
+	<van-tabs active="{{ active }}">
+		<van-tab title="寻物启士">
+			<view wx:if="{{lost_list.length}}" bindtap="tapToLostDetail" data-id="{{item._id}}" class="msg-item" wx:key="{{item._id}}" wx:for="{{lost_list}}">
+		        <image 
+		            src="{{item.userDetail.avatarUrl}}" 
+		            class="userinfo-avatar mini-avatar"
+		        />
+		        <view class="item_right">
+		            <view class="nickName">
+		                <text>{{item.userDetail.nickName}}</text>
+		            </view>
+		            <view class="decrip">
+		                <view>
+		                    <image
+		                        src="{{item.pic_url[0]}}"
+		                        class="goods_pic"
+		                    />
+		                </view>
+		                <view class="des_txt">
+		                    <text class="title">{{item.title}}</text>
+		                    <text class="description">{{item.description}}</text>
+		                </view>
+		            </view>
+		            <view class="btns">
+						<van-button wx:if="{{!item.status}}" catchtap="showDialog" data-gid="{{item._id}}" data-index="{{index}}" data-type="0" data-list="lost_list" plain round size="mini" type="danger">找回</van-button>
+						<van-button wx:else plain round size="mini" disabled type="danger">已找回</van-button>
+						<van-button catchtap="showDialog" data-list="lost_list" data-type="2" data-gid="{{item._id}}" data-index="{{index}}" plain round size="mini" type="default">删除</van-button>
+					</view>
+		            <view class="t_box">
+		                <text class="pub_time">{{item.pub_time}}</text>
+		            </view>
+		        </view>
+		        
+		    </view>
+		    <view class="no-likes" wx:if="{{!lost_list.length}}">
+		    	<text class="empty">暂无数据</text>
+		    </view>
+			
+		</van-tab>
+		<van-tab title="招领启示">
+			<view wx:if="{{found_list.length}}" bindtap="tapToLostDetail" data-id="{{item._id}}" class="msg-item" wx:key="{{item._id}}" wx:for="{{found_list}}">
+		        <image 
+		            src="{{item.userDetail.avatarUrl}}" 
+		            class="userinfo-avatar mini-avatar"
+		        />
+		        <view class="item_right">
+		            <view class="nickName">
+		                <text>{{item.userDetail.nickName}}</text>
+		            </view>
+		            <view class="decrip">
+		                <view>
+		                    <image
+		                        src="{{item.pic_url[0]}}"
+		                        class="goods_pic"
+		                    />
+		                </view>
+		                <view class="des_txt">
+		                    <text class="title">{{item.title}}</text>
+		                    <text class="description">{{item.description}}</text>
+		                </view>
+		            </view>
+		            <view class="btns">
+						<van-button wx:if="{{!item.status}}" catchtap="showDialog" data-list="found_list" data-gid="{{item._id}}" data-index="{{index}}" data-type="1" plain round size="mini" type="danger">返还</van-button>
+						<van-button wx:else plain round size="mini" disabled type="danger">已返还</van-button>
+						<van-button catchtap="showDialog" data-list="found_list" data-gid="{{item._id}}" data-type="2" data-index="{{index}}" plain round size="mini" type="default">删除</van-button>
+					</view>
+		            <view class="t_box">
+		                <text class="pub_time">{{item.pub_time}}</text>
+		            </view>
+		        </view>
+		    </view>
+		    <view class="no-likes" wx:if="{{!found_list.length}}">
+		    	<text class="empty">暂无数据</text>
+		    </view>
+		</van-tab>
+	</van-tabs>
+	<van-dialog id="van-dialog" />
+</view>
