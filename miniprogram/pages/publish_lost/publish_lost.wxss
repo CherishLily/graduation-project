@@ -89,3 +89,18 @@
 	background-color: white;
 	height: 50rpx;
 }
+.lost-found-time{
+	background-color:white;
+	display:block;
+	border-bottom:solid 1rpx #eee;
+	line-height:48rpx;
+	padding:20rpx 30rpx;
+	font-size:28rpx;
+	box-sizing:border-box;
+}
+.lost-found-time .holder, .lost-found-time .time{
+	margin-left: 116rpx;
+}
+.lost-found-time .holder{
+	color: #9a9a9a;
+}

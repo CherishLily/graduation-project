@@ -85,5 +85,12 @@ Page({
         wx.navigateTo({
             url: `../goodsDetail/goodsDetail?id=${e.currentTarget.dataset.id}&status=1`
         });
+	},
+
+	tapToUserInfo(e){
+        const { userid } = e.currentTarget.dataset;
+        wx.navigateTo({
+            url: `../userCenter/userCenter?userId=${userid}`
+        })
     }
 })

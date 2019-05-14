@@ -2,7 +2,7 @@
     <view class="search">
         <view class="ipt-box">
             <text class="iconfont icon-icon_search"></text>
-            <input class="search-ipt" bindinput="saveSearchKey" maxlength="20" type="text" placeholder="请输入查询内容" />
+            <input class="search-ipt" value="{{searchKey}}" bindinput="saveSearchKey" maxlength="20" type="text" placeholder="请输入查询内容" />
         </view>
         <button bindtap="toSearchList" class="search-btn">搜索</button>
     </view>
@@ -56,6 +56,8 @@
                     <image 
                         src="{{item.userDetail.avatarUrl}}" 
                         class="userinfo-avatar mini-avatar"
+                        catchtap="tapToUserInfo"
+                        data-userid="{{item.openid}}"
                     />
                     <view class="item_right">
                         <view class="nickName">
@@ -92,6 +94,8 @@
                     <image 
                         src="{{item.userDetail.avatarUrl}}" 
                         class="userinfo-avatar mini-avatar"
+                        catchtap="tapToUserInfo"
+                        data-userid="{{item.openid}}"
                     />
                     <view class="item_right">
                         <view class="nickName">
@@ -112,6 +116,8 @@
                         <view class="t_box">
                             <view class="g_type">
                                 <text>#{{item.type}}</text>
+                                <van-tag wx:if="{{item.status == 1 && item.type_num == 1}}" color="#f2826a" plain>已返还</van-tag>
+                                <van-tag wx:if="{{item.status == 1 && item.type_num == 0}}" color="#f2826a" plain>已寻回</van-tag>                                
                             </view>
                             <text class="pub_time">{{item.pub_time}}</text>
                         </view>

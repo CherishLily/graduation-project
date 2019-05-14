@@ -1,6 +1,7 @@
 <view>
 	<veiw class="login">
-	    <image src="{{avatarUrl}}" class="userinfo-avatar" />
+	    <image wx:if="{{!logged}}" src="{{avatarUrl}}" class="userinfo-avatar" />
+		<image wx:else src="{{userInfo.avatarUrl}}" class="userinfo-avatar" />
 	    <view class="info" wx:if="{{!logged}}">
 	    	<!-- <text>未登录</text> -->
 	    	<button class="log_btn" open-type="getUserInfo" bindgetuserinfo="bindGetUserInfo">点击登录</button>
@@ -8,8 +9,9 @@
 	    </view>
 	    <view class="info" wx:else>
 	    	<text>{{userInfo.nickName}}</text>
-	    	<text class="detail">请点击右侧按钮完善您的个人信息吧</text>
-	    </view>
+			<text wx:if="{{userInfo.autograph != ''}}" class="detail">个性签名: {{userInfo.autograph}}</text>
+	    	<text wx:else class="detail">请点击右侧按钮完善您的个人信息吧</text>
+		</view>
 	    <view class="arrow" bindtap="toUserInfo">
 	    	<text class="iconfont icon-jiantouarrow487"></text>
 	    </view>
@@ -33,19 +35,15 @@
 		</view>
 	</view>
 
-	<!-- <view class="share">
+	<view class="share">
 		<view>
-			<text class="iconfont share-icon icon-fenxiang"></text>
-			<text>分享给朋友</text>
-	    	<text class="iconfont icon-jiantouarrow487"></text>
+			<button open-type="share">
+				<text class="iconfont share-icon icon-fenxiang"></text>
+				<text>分享给朋友</text>
+				<text class="iconfont icon-jiantouarrow487"></text>
+			</button>
 		</view>
-		<view>
-			<text class="iconfont icon-yijianfankui share-icon"></text>
-			<text>意见反馈</text>
-	    	<text class="iconfont icon-jiantouarrow487"></text>
-		</view>
-		
-	</view> -->
+	</view>
 	<van-dialog id="van-dialog" />
 
 	<van-loading wx:if="{{showLoading}}" size="50px" class="custom-class" color="#fff" />

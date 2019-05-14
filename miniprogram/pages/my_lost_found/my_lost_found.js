@@ -74,9 +74,10 @@ Page({
         const newList = this.data[list];
         const item = newList.splice(index, 1);
         wx.cloud.callFunction({
-            name: 'deleteLost_found',
+            name: 'cFuncs',
             data: {
-                id
+                id,
+                api_name: 'deleteLost_found'
             },
             success: res => {
                 wx.hideLoading();
@@ -110,9 +111,10 @@ Page({
         newList.push(item[0]);
         console.log(newList);
         wx.cloud.callFunction({
-            name: 'changeLost_status',
+            name: 'cFuncs',
             data: {
-                id
+                id,
+                api_name: 'changeLost_status'
             },
             success: res => {
                 wx.hideLoading();

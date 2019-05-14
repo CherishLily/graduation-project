@@ -8,7 +8,11 @@ const db = cloud.database()
 exports.main = async (event, context) => {
 	const openid = cloud.getWXContext().OPENID;
 	const { type, title, description, phone, pic_url, address, f_time, type_num, userDetail } = event;
-	const pub_time = sd.format(new Date(), 'YYYY-MM-DD HH:mm:ss');
+	let { pub_time } = event;
+	if(!pub_time){
+		pub_time = sd.format(new Date(), 'YYYY-MM-DD HH:mm:ss');
+	}
+	// const pub_time = sd.format(new Date(), 'YYYY-MM-DD HH:mm:ss');
 	const params = {
 		type,
 		title, 

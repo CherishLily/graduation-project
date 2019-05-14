@@ -68,25 +68,6 @@ Page({
         })
     },
 
-    checkLogin() {
-        const that = this;
-        wx.checkSession({
-            success(e) {
-                //登录未过期
-                console.log('您已登录,session_key未过期');
-                //获取用户信息
-                that.getUserInfo();
-            },
-            fail() {
-                wx.showToast({
-                    title: '登录已过期',
-                    icon: 'none',
-                    duration: 1000
-                })
-            }
-        })
-    },
-
     getUserInfo() {
         const that = this;
         const skey = wx.getStorageSync('skey');
@@ -102,12 +83,11 @@ Page({
                     console.log(result.result.info);
                     if (result.result.suc) {
                         app.globalData.logged = true;
+                        app.globalData.userInfo = result.result.info;
                         that.setData({
-                            avatarUrl: result.result.info.avatarUrl,
                             userInfo: result.result.info,
                             logged: true
                         });
-                        app.globalData.userInfo = result.result.info;
                     } else {
                         wx.showToast({
                             title: result.result.info,
@@ -167,17 +147,38 @@ Page({
         }
 
     },
-
-    onShow: function (options) {
-        try {
-            const value = wx.getStorageSync('skey')
-            if (value) {
-                //存在skey，检查session_key是否过期
-                console.log('存在skey');
-                this.checkLogin();
-            }
-        } catch (e) {
-            console.log(e)
+    onShow() {
+        const {
+            logged,
+            userInfo
+        } = app.globalData;
+        if (logged) {
+            this.setData({
+                logged,
+                userInfo
+            })
         }
+    },
+
+    onShareAppMessage(options){
+        // 设置菜单中的转发按钮触发转发事件时的转发内容
+        const shareObj = {
+            title: "成理服务平台", // 默认是小程序的名称(可以写slogan等)
+            path: '/pages/home/home', // 默认是当前页面，必须是以‘/’开头的完整路径
+            imageUrl: '', //自定义图片路径，可以是本地文件路径、代码包文件路径或者网络图片路径，支持PNG及JPG，不传入 imageUrl 则使用默认截图。显示图片长宽比是 5:4
+            success: res => {
+                // 转发成功之后的回调
+                if (res.errMsg == 'shareAppMessage:ok') {
+                    wx.showToast({
+                        title: '转发成功',
+                        icon: 'success',
+                        duration: 1000
+                    })
+                }
+            }
+        };
+        
+        // 返回shareObj
+        return shareObj;
     }
 })

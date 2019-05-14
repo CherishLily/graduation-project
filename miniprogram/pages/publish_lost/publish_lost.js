@@ -42,15 +42,24 @@ Page({
         })
     },
 
+
     chooseDate(e){
+        const {params} = this.data;
+        params['f_time'] = this.timeConvert(new Date(e.detail));
+        this.setData({
+            currentDate: e.detail,
+            showDatePicker: false,
+            params
+        })
+    },
+
+    timeConvert(time){
         const changeTime = num => {
             if(num<10){
                 num = `0${num}`;
             }
             return num;
         }
-        const {params} = this.data;
-        const time = new Date(e.detail);
         const y = time.getFullYear();
         let m = time.getMonth()+1;
         let d = time.getDate();
@@ -62,12 +71,7 @@ Page({
         h = changeTime(h);
         mm = changeTime(mm);
         s = changeTime(s);
-        params['f_time'] = `${y}-${m}-${d} ${h}:${mm}:${s}`;
-        this.setData({
-            currentDate: e.detail,
-            showDatePicker: false,
-            params
-        })
+        return `${y}-${m}-${d} ${h}:${mm}:${s}`;
     },
 
     deletePic(e){
@@ -258,6 +262,7 @@ Page({
                 nickName,
                 avatarUrl
             }
+            params['pub_time'] = this.timeConvert(new Date());
             console.log(params);
             wx.cloud.callFunction({
                 name: 'publish_lost',

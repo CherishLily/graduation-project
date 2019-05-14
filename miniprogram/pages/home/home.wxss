@@ -74,40 +74,9 @@
 	border-bottom: 1px solid #249ed9;
 }
 .van-tag{
-  float:right;
-  position:relative;
-  right:100rpx;
-}
-.decrip{
-	display: flex;
-	flex-direction: row;
-}
-.des_txt{
-	margin-top: 20rpx;
-	font-size: 28rpx;
-	margin-left: 10rpx;
-}
-.des_txt .title{
-	display: block;
-	width: 360rpx;
-	overflow: hidden; 
-	text-overflow: ellipsis;
-	white-space: nowrap;
-}
-.description{
-	font-size: 24rpx;
-	color: gray;
-	display: block;
-	margin-top: 10rpx;
-	width: 360rpx;
-	overflow: hidden; 
-	text-overflow: ellipsis;
-	display: -webkit-box; 
-	-webkit-box-orient: vertical;
-	-webkit-line-clamp: 3; 
-}
-.t_box{
-	padding-bottom: 20rpx;
+	float:right;
+	position:relative;
+	right:100rpx;
 }
 .classify-item image{
 	width: 60rpx;
@@ -116,7 +85,6 @@
 	left: 50%;
 	top: 50%;
 	transform: translate(-50%, -50%);
-
 }
 .img_box{
 	position: relative;

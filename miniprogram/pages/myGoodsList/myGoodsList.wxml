@@ -1,5 +1,5 @@
 <view>
-	<van-tabs active="{{ active }}">
+	<van-tabs bind:change="onChange" active="{{ active }}">
 		<van-tab title="在售商品">
 			<view wx:for="{{sale_list}}" data-status="1" wx:key="{{index}}" class="list_item" bindtap="tapToDetail" data-id="{{item._id}}">
 				<image src="{{item.pic_url[0]}}" />

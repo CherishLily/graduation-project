@@ -9,6 +9,7 @@
 		<view class="title">
 			<van-cell-group>
 				<van-field
+					maxlength="20"
 					placeholder="输入标题,拾到或丢失的物品类型等"
 					border="{{ false }}"
 					bind:change="saveMessage"
@@ -23,6 +24,7 @@
 				<van-field
 				type="textarea"
 				placeholder="输入描述,拾到或丢失物品的具体描述"
+				maxlength="100"
 				autosize
 				bind:change="saveMessage"
 				data-type="description"
@@ -47,6 +49,7 @@
 	<view class="sale_detail">
 		<van-cell-group>
 			<van-field
+				maxlength="20"
 			    label="地点 :"
 			    placeholder="拾取或丢失物品地点"
 			    error-message="{{ address_err }}"
@@ -55,7 +58,7 @@
 			    data-type="address"
 			    type="text"
 			/>
-			<van-field
+			<!-- <van-field
 			    label="时间 :"
 			    placeholder="拾取或丢失物品时间"
 			    error-message="{{ time_err }}"
@@ -63,7 +66,12 @@
 			    type="text"
 			    value="{{params.f_time}}"
 			    bindtap="toShowDatePicker"
-			/>
+			/> -->
+			<p class="lost-found-time" bindtap="toShowDatePicker">
+				<text>时间:</text>
+				<text class="holder" wx:if="{{params.f_time == ''}}">拾取或丢失物品时间</text>
+				<text class="time" wx:else>{{params.f_time}}</text>
+			</p>
 			
 			<van-field
 			    label="联系方式 :"

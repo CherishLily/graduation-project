@@ -10,6 +10,7 @@
 		<view class="title">
 			<van-cell-group>
 				<van-field
+					maxlength="20"
 					placeholder="输入标题 品类品牌型号都是买家喜欢搜索的哟"
 					border="{{ false }}"
 					bind:change="saveMessage"
@@ -23,6 +24,7 @@
 			<van-cell-group>
 				<van-field
 				type="textarea"
+				maxlength="150"
 				placeholder="输入描述，品牌、规格、几成新、取货方式、购买渠道、转手原因等信息，建议150字以内哟~"
 				autosize
 				bind:change="saveMessage"

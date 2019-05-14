@@ -1,71 +1,13 @@
-.list_item{
-	display: flex;
-	flex-direction: row;
-	margin-bottom: 20rpx;
-	background-color: white;
-	padding: 20rpx;
-	position: relative;
-}
-.list_item image{
-	width: 200rpx;
-	height: 200rpx;
-	border-radius: 8rpx;
-	margin-right: 20rpx;
-}
 .van-button--default{
 	color: #a0a0a0 !important;
 	border: solid 1px #a0a0a0 !important;
 	background-color: white !important;
 }
-.g_desc{
-	color: gray;
-	font-size: 24rpx;
-}
-.goods_msg{
-	display: flex;
-	flex-direction: column;
-	height:100%;
-	justify-content:space-between;
-}
-.g_tit{
-	width: 320rpx;
-	overflow: hidden;
-	text-overflow: ellipsis;
-	white-space: nowrap;
-	margin-bottom: 10rpx;
-	font-size: 30rpx;
-}
-.g_desc{
-	width: 320rpx;
-	overflow: hidden; 
-	text-overflow: ellipsis;
-	display: -webkit-box; 
-	-webkit-box-orient: vertical;
-	-webkit-line-clamp: 2; 
-}
-/*.btns{
-	position: absolute;
-	bottom: 0;
-}*/
-.g_center{
-	position: relative;
-}
 .van-button{
 	display: block !important;
 	margin-top: 15rpx;
 }
-.p_box{
-	color: #e76f33;
-	margin-bottom: 30rpx;
-}
 .p_tag{
 	font-size: 24rpx;
 }
-.like_num{
-	font-size: 24rpx;
-	color: gray;
-}
-.g_right{
-	position: absolute;
-	right: 20rpx;
-}
+

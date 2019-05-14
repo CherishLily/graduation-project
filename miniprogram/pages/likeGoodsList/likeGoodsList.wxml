@@ -3,6 +3,8 @@
         <image 
             src="{{item.userDetail.avatarUrl}}" 
             class="userinfo-avatar mini-avatar"
+            catchtap="tapToUserInfo"
+            data-userid="{{item.openid}}"
         />
         <view class="item_right">
             <view class="nickName">

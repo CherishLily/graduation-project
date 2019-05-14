@@ -1,7 +1,7 @@
 <view>
 	<view class="common-bg avatar-box">
 		<image src="{{avatarUrl}}" class="userinfo-avatar" />
-		<view>
+		<view bindtap="changeAvatar">
 			<text class="txt">修改头像</text>
 			<text class="iconfont icon-jiantouarrow487"></text>
 		</view>
@@ -11,7 +11,7 @@
 		<view class="user-info common-bg">
 			<view>
 				<text>昵称:</text>
-				<input bindinput="changeInfo" value="{{detailInfo.nickName}}" data-type="nickName" type="text" />
+				<input bindinput="changeInfo" maxlength="10" value="{{detailInfo.nickName}}" data-type="nickName" type="text" />
 			</view>
 			<view bindtap="chooseGender">
 				<text>性别:</text>
@@ -19,12 +19,16 @@
 			</view>
 			<view>
 				<text>个性签名:</text>
-				<input bindinput="changeInfo" value="{{detailInfo.autograph}}" data-type="autograph" type="text" />
+				<input bindinput="changeInfo" maxlength="20" value="{{detailInfo.autograph}}" data-type="autograph" type="text" />
 			</view>
 			<view>
 				<text>宿舍区:</text>
-				<input bindinput="changeInfo" value="{{detailInfo.dormitoryArea}}" data-type="dormitoryArea" type="text" />
+				<input bindinput="changeInfo" maxlength="5" value="{{detailInfo.dormitoryArea}}" data-type="dormitoryArea" type="text" />
 			</view>
+			<!-- <view>
+				<text>学院:</text>
+				<input bindinput="changeInfo" maxlength="10" value="{{detailInfo.institution}}" data-type="institution" type="text" />
+			</view> -->
 		</view>
 
 		<view class="tip">

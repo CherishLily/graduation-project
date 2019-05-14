@@ -19,9 +19,10 @@ Page({
         })
         console.log(options.id);
         wx.cloud.callFunction({
-            name: 'getLostDetail',
+            name: 'cFuncs',
             data: {
-                id: options.id
+                id: options.id,
+                api_name: 'getLostDetail'
             },
             success: res => {
                 wx.hideLoading();

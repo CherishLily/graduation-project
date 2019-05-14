@@ -1,0 +1,59 @@
+<veiw class="login">
+    <image src="{{info.avatarUrl}}" class="userinfo-avatar" />
+    <view class="info">
+        <text>{{info.nickName}}</text>
+        <text wx:if="{{info.autograph != ''}}" class="detail">{{info.autograph}}</text>
+    </view>
+</veiw>
+<van-tabs active="{{ 0 }}">
+    <van-tab title="他的二手商品">
+        <view wx:for="{{goods_list}}" wx:key="{{index}}" class="list_item" bindtap="tapToDetail" data-id="{{item._id}}">
+            <image src="{{item.pic_url[0]}}" />
+            <view class="g_center">
+                <view class="goods_msg">
+                    <text class="g_tit">{{item.title}}</text>
+                    <text class="g_desc">{{item.description}}</text>
+                    <text class="like_num">{{item.likeNum}}人喜欢</text>
+                    <text class="pub_time">{{item.pub_time}}</text>
+                </view>
+            </view>
+            <view class="g_right">
+                <view class="p_box">
+                    <text class="p_tag">￥</text><text>{{item.price}}</text>
+                </view>
+            </view>
+        </view>
+        <view class="no-likes" wx:if="{{!goods_list.length}}">
+            <text class="empty">暂无数据</text>
+        </view>
+    </van-tab>
+    <van-tab title="他的失物招领">
+        <view bindtap="tapToLostDetail" data-id="{{item._id}}" class="msg-item" wx:key="{{item._id}}" wx:for="{{lost_list}}">
+            <view class="inner-item">
+                <view class="decrip">
+                    <view>
+                        <image
+                            src="{{item.pic_url[0]}}"
+                            class="goods_pic"
+                        />
+                    </view>
+                    <view class="des_txt">
+                        <text class="title">{{item.title}}</text>
+                        <text class="description">{{item.description}}</text>
+                        <view class="g_type">
+                            <text>#{{item.type}}</text>
+                        </view>
+                        <view class="t_box">
+                            <text class="pub_time">{{item.pub_time}}</text>
+                            <van-tag wx:if="{{item.status == 1 && item.type_num == 1}}" color="#f2826a" plain>已返还</van-tag>
+                            <van-tag wx:if="{{item.status == 1 && item.type_num == 0}}" color="#f2826a" plain>已寻回</van-tag>
+                        </view>
+                    </view>
+                </view>
+            </view>
+        </view>
+        <view class="no-likes" wx:if="{{!lost_list.length}}">
+            <text class="empty">暂无数据</text>
+        </view>
+    </van-tab>
+</van-tabs>

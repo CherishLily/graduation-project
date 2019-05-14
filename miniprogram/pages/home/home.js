@@ -174,11 +174,21 @@ Page({
 
     toSearchList(){
         let { searchKey } = this.data;
+        this.setData({
+            searchKey: ''
+        })
         searchKey = searchKey.replace(/\s*/g, '');
         if(searchKey){
             wx.navigateTo({
                 url: `../classifyList/classifyList?from=search&txt=${searchKey}`
             })
         }
+    },
+
+    tapToUserInfo(e){
+        const { userid } = e.currentTarget.dataset;
+        wx.navigateTo({
+            url: `../userCenter/userCenter?userId=${userid}`
+        })
     }
 })

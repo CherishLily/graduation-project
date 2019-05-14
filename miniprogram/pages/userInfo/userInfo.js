@@ -57,6 +57,56 @@ Page({
             console.log(e);
         }
     },
+
+    changeAvatar(){
+        const that = this;
+    // 选择图片
+        wx.chooseImage({
+            count: 1,
+            sizeType: ['compressed'],
+            sourceType: ['album', 'camera'],
+            success: function (res) {
+                const filePath = res.tempFilePaths;
+                //将选择的图片上传
+                console.log(filePath);
+                that.doUpload(filePath[0]);
+            },
+            fail: e => {
+                console.error(e)
+            }
+        })
+    },
+
+    doUpload(filePath) {
+        wx.showLoading({
+            title: '上传中'
+        })
+        const that = this;
+        const arr = filePath.split('/');
+        const name = arr[arr.length-1];
+         // 上传图片
+        const cloudPath = 'avatarUrl/' + name;
+
+        wx.cloud.uploadFile({
+            cloudPath,
+            filePath
+        }).then(res => {
+            wx.hideLoading();
+            console.log('[上传文件] 成功：', res)
+            that.setData({
+                avatarUrl: res.fileID
+            });
+        }).catch(error => {
+            wx.hideLoading();
+            console.error('[上传文件] 失败：', error);
+             wx.showToast({
+                icon: 'none',
+                title: '上传失败',
+                duration: 1000
+            })
+        })
+    },
+
     changeInfo(e){
         const type = e.currentTarget.dataset.type;
         const newInfo = this.data.detailInfo;
@@ -71,7 +121,6 @@ Page({
             showLoading: true
         });
         const that = this;
-        // console.log(this.data.detailInfo);
         const { nickName, gender, autograph, dormitoryArea, phoneNumber, weChat } = this.data.detailInfo;
         const { avatarUrl } = this.data;
         try {
@@ -91,11 +140,19 @@ Page({
                         avatarUrl
                     },
                     success: result => {
+                        app.globalData.userInfo = {
+                            nickName,
+                            gender,
+                            autograph,
+                            dormitoryArea,
+                            phoneNumber,
+                            weChat,
+                            avatarUrl
+                        };
                         that.setData({
                             showLoading: false
                         })
                         Toast(result.result.msg);
-
                     },
                     fail: err => {
                         that.setData({

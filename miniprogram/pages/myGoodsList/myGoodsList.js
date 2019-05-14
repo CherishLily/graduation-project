@@ -19,6 +19,10 @@ Page({
     * 生命周期函数--监听页面加载
     */
     onLoad: function (options) {
+        this.getSaleList();
+    },
+
+    getSaleList(){
         const skey = wx.getStorageSync('skey');
         const that = this;
         if(skey){
@@ -47,7 +51,16 @@ Page({
                     console.log(err);
                 }
             });
+        }
+    },
 
+    getUnsaleList(){
+        const skey = wx.getStorageSync('skey');
+        const that = this;
+        if(skey){
+            wx.showLoading({
+                title: '加载中'
+            })
             wx.cloud.callFunction({
                 name: 'getUnsale_list',
                 data: {
@@ -55,6 +68,7 @@ Page({
                 },
                 success: res => {
                     console.log(res);
+                    wx.hideLoading();
                     if(res.result.length){
                         that.setData({
                             unsale_list: res.result
@@ -66,9 +80,20 @@ Page({
                     }
                 },
                 fail: err => {
+                    wx.hideLoading();
                     console.log(err);
                 }
             })
+        }
+
+    },
+
+    onChange(e){
+        console.log(e.detail.index)
+        if(e.detail.index === 0){
+            this.getSaleList();
+        }else{
+            this.getUnsaleList();
         }
 
     },
@@ -117,10 +142,11 @@ Page({
         }
         list.splice(index,1);
         wx.cloud.callFunction({
-            name: 'deleteGoods',
+            name: 'cFuncs',
             data: {
                 goods_id,
-                status
+                status,
+                api_name: 'deleteGoods'
             },
             success: res => {
                 wx.hideLoading();

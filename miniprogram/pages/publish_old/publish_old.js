@@ -214,6 +214,27 @@ Page({
 
     },
 
+    timeConvert(time){
+        const changeTime = num => {
+            if(num<10){
+                num = `0${num}`;
+            }
+            return num;
+        }
+        const y = time.getFullYear();
+        let m = time.getMonth()+1;
+        let d = time.getDate();
+        let h = time.getHours();
+        let mm = time.getMinutes();
+        let s = time.getSeconds();
+        m = changeTime(m);
+        d = changeTime(d);
+        h = changeTime(h);
+        mm = changeTime(mm);
+        s = changeTime(s);
+        return `${y}-${m}-${d} ${h}:${mm}:${s}`;
+    },
+
     toPublish(){
         const { params } = this.data;
 
@@ -223,12 +244,15 @@ Page({
             wx.showLoading({
                 title: '发布中',
             });
+
             const { nickName, avatarUrl } = app.globalData.userInfo;
             params.userDetail = {
                 nickName,
                 avatarUrl
             }
+            params['pub_time'] = this.timeConvert(new Date());
             console.log(params);
+
             wx.cloud.callFunction({
                 name: 'publish_goods',
                 data: params,

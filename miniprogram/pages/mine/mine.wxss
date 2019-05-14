@@ -44,15 +44,24 @@
 .order-icon{
 	font-size: 48rpx;
 	margin-right: 20rpx;
-	/*color: gray;*/
 }
 .share-icon{
 	font-size: 40rpx;
 	margin-right: 20rpx;
-	/*color: gray;*/
 }
 .log_btn{
 	position:relative;
 	right:125rpx;
 	font-size: 32rpx;
+}
+.share button::after {
+	border: none;
+}
+.share button {
+	background-color: #fff;
+	border-radius:0;
+	line-height: 49rpx;
+	text-align: left;
+	display: inline;
+	padding-left: 0rpx;
 }
